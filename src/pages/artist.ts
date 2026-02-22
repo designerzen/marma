@@ -12,9 +12,23 @@ export function createArtistPage(router: any): HTMLElement {
   // Artist Hero
   const artistHero = document.createElement('section');
   artistHero.className = 'campaign-hero';
+  artistHero.style.backgroundImage = "url('/images/artists/placeholder.png')";
+  artistHero.style.backgroundSize = 'cover';
+  artistHero.style.backgroundPosition = 'center';
+  artistHero.style.position = 'relative';
+  
+  // Add overlay for text readability
+  const overlay = document.createElement('div');
+  overlay.style.position = 'absolute';
+  overlay.style.inset = '0';
+  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+  artistHero.appendChild(overlay);
+  
   const artistName = document.createElement('h1');
   artistName.textContent = 'Luna Noir';
   artistName.style.marginBottom = '0';
+  artistName.style.position = 'relative';
+  artistName.style.zIndex = '1';
   artistHero.appendChild(artistName);
   container.appendChild(artistHero);
 

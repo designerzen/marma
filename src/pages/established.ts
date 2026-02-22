@@ -151,10 +151,14 @@ export function createEstablishedPage(router: any): HTMLElement {
   const thead = document.createElement('thead');
   const headerRow = document.createElement('tr');
 
-  const headers = ['Artist', 'Campaign', 'Funding Progress', 'Action'];
+  const headers = ['Image', 'Artist', 'Campaign', 'Funding Progress', 'Action'];
   headers.forEach((header) => {
     const th = document.createElement('th');
     th.textContent = header;
+    if (header === 'Image') {
+      th.style.width = '60px';
+      th.style.textAlign = 'center';
+    }
     headerRow.appendChild(th);
   });
 
@@ -182,7 +186,7 @@ export function createEstablishedPage(router: any): HTMLElement {
     if (filtered.length === 0) {
       const emptyRow = document.createElement('tr');
       const emptyCell = document.createElement('td');
-      emptyCell.colSpan = 4;
+      emptyCell.colSpan = 5;
       emptyCell.style.textAlign = 'center';
       emptyCell.style.padding = 'var(--spacing-lg)';
       emptyCell.style.color = 'var(--color-text-secondary)';
@@ -194,6 +198,21 @@ export function createEstablishedPage(router: any): HTMLElement {
 
     filtered.forEach((artist) => {
       const row = document.createElement('tr');
+
+      // Artist image
+      const imageCell = document.createElement('td');
+      imageCell.style.textAlign = 'center';
+      imageCell.style.verticalAlign = 'middle';
+      
+      const img = document.createElement('img');
+      img.src = artist.image || '/images/artists/placeholder.png';
+      img.alt = artist.artist;
+      img.style.width = '50px';
+      img.style.height = '50px';
+      img.style.borderRadius = '4px';
+      img.style.objectFit = 'cover';
+      imageCell.appendChild(img);
+      row.appendChild(imageCell);
 
       // Artist name
       const nameCell = document.createElement('td');
