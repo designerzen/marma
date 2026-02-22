@@ -490,7 +490,6 @@ button:hover, .btn:hover {
   height: 30px;
   background-color: var(--color-border);
   border: 2px solid var(--color-accent-cyan);
-  margin-bottom: var(--spacing-lg);
   box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
 }
 
