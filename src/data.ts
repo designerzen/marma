@@ -4,6 +4,7 @@ export interface DormantArtist {
   campaign: string;
   'minimum-requirement': number;
   raised?: number;
+  image?: string;
 }
 
 export const dormantArtists: DormantArtist[] = [
@@ -12,81 +13,100 @@ export const dormantArtists: DormantArtist[] = [
     campaign: 'Documentary',
     'minimum-requirement': 350000,
     raised: 245000,
+    image: '/images/artists/selena-gomez.png',
   },
   {
     artist: 'Pink Floyd',
     campaign: 'Global Tour',
     'minimum-requirement': 1650000,
     raised: 1155000,
+    image: '/images/artists/pink-floyd.png',
   },
   {
     artist: 'XXXTENTACION',
     campaign: 'Custom song',
     'minimum-requirement': 65000,
     raised: 58500,
+    image: '/images/artists/xxxtentacion.png',
   },
   {
     artist: 'Santana',
     campaign: 'Golden hits selection remaster',
     'minimum-requirement': 100000,
     raised: 67000,
+    image: '/images/artists/santana.png',
   },
   {
     artist: 'Rhianna',
     campaign: 'One off concert',
     'minimum-requirement': 250000,
     raised: 187500,
+    image: '/images/artists/rihanna.png',
   },
   {
     artist: 'Lil Peep',
     campaign: 'Video production for new single',
     'minimum-requirement': 15000,
     raised: 13500,
+    image: '/images/artists/lil-peep.png',
   },
   {
     artist: 'Vashti Bunyan',
     campaign: 'Produce LP to soundtrack movie',
     'minimum-requirement': 50000,
     raised: 42000,
+    image: '/images/artists/vashti-bunyan.png',
   },
   {
     artist: 'Bridgette Medeler',
     campaign: 'Album Production',
     'minimum-requirement': 50000,
     raised: 38500,
+    image: '/images/artists/bridgette-medeler.png',
   },
   {
     artist: 'Adelle',
     campaign: '5 stage UK tour',
     'minimum-requirement': 100000,
     raised: 72000,
+    image: '/images/artists/adele.png',
   },
   {
     artist: 'Daft Punk',
     campaign: '$100k to produce 4 track techno EP',
     'minimum-requirement': 100000,
     raised: 89000,
+    image: '/images/artists/daft-punk.png',
   },
   {
     artist: 'Grothye',
     campaign: '10 track LP',
     'minimum-requirement': 20000,
     raised: 16500,
+    image: '/images/artists/grothye.png',
   },
 ];
 
 // Emerging Artists (for marketplace)
-export const emergingArtists = [
-  { name: 'Echo Rising', tokens: 15230, trending: true, genre: 'Indie Electronic' },
-  { name: 'Sonic Waves', tokens: 12890, trending: true, genre: 'Alternative' },
-  { name: 'Neon Collective', tokens: 10450, trending: false, genre: 'Synth-pop' },
-  { name: 'Pixel Dreams', tokens: 9120, trending: false, genre: 'Electronic' },
-  { name: 'Urban Echo', tokens: 8760, trending: true, genre: 'Hip-Hop' },
-  { name: 'Cosmic Sound', tokens: 7850, trending: false, genre: 'Ambient' },
-  { name: 'Digital Heart', tokens: 6920, trending: false, genre: 'Indie Pop' },
-  { name: 'Retro Wave', tokens: 5880, trending: false, genre: 'Synthwave' },
-  { name: 'Aurora', tokens: 5120, trending: true, genre: 'Pop' },
-  { name: 'Synth Moon', tokens: 4690, trending: false, genre: 'Synthpop' },
+export interface EmergingArtist {
+  name: string;
+  tokens: number;
+  trending: boolean;
+  genre: string;
+  image?: string;
+}
+
+export const emergingArtists: EmergingArtist[] = [
+  { name: 'Echo Rising', tokens: 15230, trending: true, genre: 'Indie Electronic', image: '/images/artists/echo-rising.png' },
+  { name: 'Sonic Waves', tokens: 12890, trending: true, genre: 'Alternative', image: '/images/artists/sonic-waves.png' },
+  { name: 'Neon Collective', tokens: 10450, trending: false, genre: 'Synth-pop', image: '/images/artists/neon-collective.png' },
+  { name: 'Pixel Dreams', tokens: 9120, trending: false, genre: 'Electronic', image: '/images/artists/pixel-dreams.png' },
+  { name: 'Urban Echo', tokens: 8760, trending: true, genre: 'Hip-Hop', image: '/images/artists/urban-echo.png' },
+  { name: 'Cosmic Sound', tokens: 7850, trending: false, genre: 'Ambient', image: '/images/artists/cosmic-sound.png' },
+  { name: 'Digital Heart', tokens: 6920, trending: false, genre: 'Indie Pop', image: '/images/artists/digital-heart.png' },
+  { name: 'Retro Wave', tokens: 5880, trending: false, genre: 'Synthwave', image: '/images/artists/retro-wave.png' },
+  { name: 'Aurora', tokens: 5120, trending: true, genre: 'Pop', image: '/images/artists/aurora.png' },
+  { name: 'Synth Moon', tokens: 4690, trending: false, genre: 'Synthpop', image: '/images/artists/synth-moon.png' },
 ];
 
 // Campaign data structure

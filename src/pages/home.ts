@@ -129,14 +129,14 @@ export function createHomePage(router: any): HTMLElement {
 
   // Get random dormant artist (established)
   const randomDormantIndex = Math.floor(Math.random() * dormantArtists.length);
-  const establishedArtistName = dormantArtists[randomDormantIndex].artist;
+  const establishedArtist = dormantArtists[randomDormantIndex];
 
   // Get random emerging artist
   const randomEmergingIndex = Math.floor(Math.random() * emergingArtists.length);
-  const emergingArtistName = emergingArtists[randomEmergingIndex].name;
+  const emergingArtist = emergingArtists[randomEmergingIndex];
 
-  const establishedCard = createArtistCard(establishedArtistName, 'Established', 2);
-  const emergingCard = createArtistCard(emergingArtistName, 'Emerging', 1);
+  const establishedCard = createArtistCard(establishedArtist.artist, 'Established', 2, establishedArtist.image);
+  const emergingCard = createArtistCard(emergingArtist.name, 'Emerging', 1, emergingArtist.image);
 
   const donateModal = createDonateModal();
 

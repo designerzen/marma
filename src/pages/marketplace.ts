@@ -83,6 +83,9 @@ export function createMarketplacePage(router: any): HTMLElement {
   featuredLabel.style.marginBottom = 'var(--spacing-sm)';
   featuredLabel.textContent = '⭐ Featured Artist';
 
+  // Use first emerging artist as featured
+  const topArtist = emergingArtists[0];
+
   const featuredCard = document.createElement('div');
   featuredCard.style.display = 'grid';
   featuredCard.style.gridTemplateColumns = '1fr 2fr';
@@ -93,18 +96,22 @@ export function createMarketplacePage(router: any): HTMLElement {
 
   const featuredImage = document.createElement('div');
   featuredImage.style.height = '300px';
-  featuredImage.style.background = 'linear-gradient(135deg, var(--color-accent-magenta), var(--color-accent-cyan))';
   featuredImage.style.display = 'flex';
   featuredImage.style.alignItems = 'center';
   featuredImage.style.justifyContent = 'center';
   featuredImage.style.fontSize = '5rem';
   featuredImage.style.color = 'white';
-  featuredImage.textContent = '♪';
+  featuredImage.style.backgroundSize = 'cover';
+  featuredImage.style.backgroundPosition = 'center';
+  
+  if (topArtist.image) {
+    featuredImage.style.backgroundImage = `url('${topArtist.image}')`;
+  } else {
+    featuredImage.style.background = 'linear-gradient(135deg, var(--color-accent-magenta), var(--color-accent-cyan))';
+    featuredImage.textContent = '♪';
+  }
 
   const featuredContent = document.createElement('div');
-
-  // Use first emerging artist as featured
-  const topArtist = emergingArtists[0];
 
   const featuredName = document.createElement('h2');
   featuredName.textContent = topArtist.name;
@@ -210,6 +217,23 @@ export function createMarketplacePage(router: any): HTMLElement {
     const card = document.createElement('div');
     card.className = 'card';
     card.style.cursor = 'pointer';
+    
+    // Artist image
+    const artistImage = document.createElement('div');
+    artistImage.style.width = '100%';
+    artistImage.style.height = '150px';
+    artistImage.style.marginBottom = 'var(--spacing-md)';
+    artistImage.style.backgroundSize = 'cover';
+    artistImage.style.backgroundPosition = 'center';
+    artistImage.style.borderRadius = '4px';
+    
+    if (artist.image) {
+      artistImage.style.backgroundImage = `url('${artist.image}')`;
+    } else {
+      artistImage.style.background = 'linear-gradient(135deg, var(--color-accent), var(--color-border))';
+    }
+    
+    card.appendChild(artistImage);
 
     const artistName = document.createElement('h3');
     artistName.textContent = artist.name;

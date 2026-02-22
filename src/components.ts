@@ -156,7 +156,8 @@ export function createDonateModal(): { modal: HTMLElement; open: () => void; clo
 export function createArtistCard(
   name: string,
   status: 'Established' | 'Emerging',
-  projects: number
+  projects: number,
+  imageUrl?: string
 ): HTMLElement {
   const card = document.createElement('div');
   card.className = 'artist-card';
@@ -164,16 +165,24 @@ export function createArtistCard(
   const img = document.createElement('div');
   img.style.width = '100%';
   img.style.height = '200px';
-  img.style.background = status === 'Established'
-    ? 'linear-gradient(135deg, var(--color-accent), var(--color-border))'
-    : 'linear-gradient(135deg, var(--color-border), var(--color-text))';
   img.style.marginBottom = 'var(--spacing-md)';
   img.style.display = 'flex';
   img.style.alignItems = 'center';
   img.style.justifyContent = 'center';
   img.style.color = 'white';
   img.style.fontSize = '3rem';
-  img.textContent = '♪';
+  img.style.backgroundSize = 'cover';
+  img.style.backgroundPosition = 'center';
+  img.style.overflow = 'hidden';
+
+  if (imageUrl) {
+    img.style.backgroundImage = `url('${imageUrl}')`;
+  } else {
+    img.style.background = status === 'Established'
+      ? 'linear-gradient(135deg, var(--color-accent), var(--color-border))'
+      : 'linear-gradient(135deg, var(--color-border), var(--color-text))';
+    img.textContent = '♪';
+  }
 
   const statusEl = document.createElement('div');
   statusEl.className = 'artist-status';
