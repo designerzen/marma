@@ -2,21 +2,95 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/asssets/logos/awesomething.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marma - Karmic Funding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=Rubik:wght@600;700;800&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
   </head>
   <body>
+    <div id="app"></div>
 
-	<header>
-		<h1>Marma</h1>
-		<h2>Karmic Funding</h2>
-	</header>
+    <!-- Artist Campaign Dialog Template -->
+    <template id="artist-dialog-template">
+      <div class="modal" id="artist-modal">
+        <div class="modal-content">
+          <button class="modal-close">&times;</button>
+          
+          <!-- Artist Header -->
+          <div style="margin-bottom: var(--spacing-lg);">
+            <h2 id="artist-dialog-name" style="margin-bottom: var(--spacing-xs);"></h2>
+            <p id="artist-dialog-campaign" style="color: var(--color-accent-magenta); font-weight: 600; margin-bottom: 0;"></p>
+          </div>
 
-    <main id="app">
-    
+          <!-- Campaign Description -->
+          <div id="artist-dialog-description" style="margin-bottom: var(--spacing-lg);"></div>
 
-    </main>
+          <!-- Funding Progress -->
+          <div style="margin-bottom: var(--spacing-lg);">
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-sm); text-transform: uppercase; letter-spacing: 0.05em;">Funding Goal</div>
+            <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-accent-magenta); margin-bottom: var(--spacing-sm);">
+              <span id="artist-dialog-funding">$0</span>
+            </div>
+          </div>
+
+          <!-- Artist Bio -->
+          <div id="artist-dialog-bio" style="margin-bottom: var(--spacing-lg);"></div>
+
+          <!-- Support Tiers -->
+          <div style="margin-bottom: var(--spacing-lg);">
+            <h3 style="margin-bottom: var(--spacing-md);">Support This Campaign</h3>
+            <div id="artist-dialog-tiers" style="display: grid; gap: var(--spacing-sm);"></div>
+          </div>
+
+          <!-- Contact Information -->
+          <div style="padding: var(--spacing-md); background-color: var(--color-bg-light); border: 1px solid var(--color-border); margin-bottom: var(--spacing-lg);">
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em;">Direct Contact</div>
+            <p id="artist-dialog-contact" style="margin-bottom: 0;"></p>
+          </div>
+
+          <!-- Close Button -->
+          <button class="btn" id="artist-dialog-close-btn" style="width: 100%;">Close</button>
+        </div>
+      </div>
+    </template>
+
+    <!-- Donation Tier Template (for reuse in dialogs) -->
+    <template id="donation-tier-template">
+      <div class="tier" style="cursor: pointer;">
+        <div class="tier-price"></div>
+        <h4 style="margin-bottom: var(--spacing-sm); margin-top: 0;"></h4>
+        <p style="margin-bottom: 0; font-size: 0.875rem; color: var(--color-text-secondary);"></p>
+      </div>
+    </template>
+
+    <!-- Campaign Card Template (for dynamic campaign lists) -->
+    <template id="campaign-card-template">
+      <div class="card" style="cursor: pointer;">
+        <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-accent-magenta);"></h3>
+        <p style="margin-bottom: var(--spacing-sm); font-weight: 600;"></p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+          <span style="font-size: 0.875rem; color: var(--color-text-secondary);"></span>
+          <span style="font-weight: 700; color: var(--color-accent-magenta);"></span>
+        </div>
+        <button class="btn" style="width: 100%;">Learn More</button>
+      </div>
+    </template>
+
+    <!-- Artist Profile Card Template (for marketplace/listing) -->
+    <template id="artist-profile-card-template">
+      <div class="artist-card">
+        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, var(--color-accent-magenta), var(--color-accent-cyan)); margin-bottom: var(--spacing-md); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; border: 2px solid var(--color-accent-magenta);">♪</div>
+        <div class="artist-status" style="margin-bottom: var(--spacing-md);"></div>
+        <h3 style="margin-bottom: var(--spacing-sm);"></h3>
+        <p style="margin-bottom: var(--spacing-md); color: var(--color-text-secondary);"></p>
+        <button class="btn" style="width: 100%;">Support Artist</button>
+      </div>
+    </template>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -4,9 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+	"start":"pnpm run dev",
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+	"lint": "oxlint",
+    "lint:fix": "oxlint --fix"
   },
   "devDependencies": {
     "oxlint": "^1.49.0",
