@@ -42,6 +42,8 @@ jobs:
           npm_config_legacy_peer_deps: true
 
       - name: Build
+        env:
+          VITE_BASE_PATH: /marma
         run: NODE_ENV=production pnpm run build
         timeout-minutes: 10
 
