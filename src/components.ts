@@ -271,8 +271,6 @@ export function createProgressBar(raised: number, goal: number): HTMLElement {
   progressBar.appendChild(progressFill);
 
   const stats = document.createElement('div');
-  stats.style.display = 'flex';
-  stats.style.justifyContent = 'space-between';
   stats.style.fontSize = '0.875rem';
   stats.style.color = 'var(--color-text-secondary)';
   stats.style.marginTop = 'var(--spacing-sm)';
