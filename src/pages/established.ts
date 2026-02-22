@@ -1,4 +1,4 @@
-import { createHeader, createFooter, createDonateModal } from '../components.ts';
+import { createHeader, createFooter, createDonateModal, createProgressBar } from '../components.ts';
 import { dormantArtists } from '../data.ts';
 
 export function createEstablishedPage(router: any): HTMLElement {
@@ -151,7 +151,7 @@ export function createEstablishedPage(router: any): HTMLElement {
   const thead = document.createElement('thead');
   const headerRow = document.createElement('tr');
 
-  const headers = ['Artist', 'Campaign', 'Funding Required', 'Action'];
+  const headers = ['Artist', 'Campaign', 'Funding Progress', 'Action'];
   headers.forEach((header) => {
     const th = document.createElement('th');
     th.textContent = header;
@@ -212,13 +212,13 @@ export function createEstablishedPage(router: any): HTMLElement {
       campaignCell.textContent = artist.campaign || '(No campaign name)';
       campaignCell.style.color = artist.campaign ? 'var(--color-text)' : 'var(--color-text-secondary)';
 
-      // Funding Required
+      // Funding Progress
       const fundingCell = document.createElement('td');
-      const fundingValue = document.createElement('span');
-      fundingValue.style.fontWeight = '700';
-      fundingValue.style.color = 'var(--color-accent-magenta)';
-      fundingValue.textContent = '$' + artist['minimum-requirement'].toLocaleString();
-      fundingCell.appendChild(fundingValue);
+      fundingCell.style.verticalAlign = 'middle';
+      const raised = artist.raised || 0;
+      const goal = artist['minimum-requirement'];
+      const progressBar = createProgressBar(raised, goal);
+      fundingCell.appendChild(progressBar);
 
       // Action Button
       const actionCell = document.createElement('td');

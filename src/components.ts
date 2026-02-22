@@ -243,3 +243,42 @@ export function createLeaderboardRow(
 
   return row;
 }
+
+export function createProgressBar(raised: number, goal: number): HTMLElement {
+  const container = document.createElement('div');
+  container.style.marginBottom = 'var(--spacing-md)';
+
+  const percentage = Math.min(Math.round((raised / goal) * 100), 100);
+
+  const progressBar = document.createElement('div');
+  progressBar.className = 'progress-bar';
+
+  const progressFill = document.createElement('div');
+  progressFill.className = 'progress-fill';
+  progressFill.style.width = `${percentage}%`;
+  progressFill.style.justifyContent = 'center';
+  progressFill.textContent = `${percentage}%`;
+
+  progressBar.appendChild(progressFill);
+
+  const stats = document.createElement('div');
+  stats.style.display = 'flex';
+  stats.style.justifyContent = 'space-between';
+  stats.style.fontSize = '0.875rem';
+  stats.style.color = 'var(--color-text-secondary)';
+  stats.style.marginTop = 'var(--spacing-sm)';
+
+  const raisedEl = document.createElement('span');
+  raisedEl.textContent = `$${raised.toLocaleString()} raised`;
+
+  const goalEl = document.createElement('span');
+  goalEl.textContent = `of $${goal.toLocaleString()}`;
+
+  stats.appendChild(raisedEl);
+  stats.appendChild(goalEl);
+
+  container.appendChild(progressBar);
+  container.appendChild(stats);
+
+  return container;
+}

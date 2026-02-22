@@ -3,6 +3,7 @@ export interface DormantArtist {
   artist: string;
   campaign: string;
   'minimum-requirement': number;
+  raised?: number;
 }
 
 export const dormantArtists: DormantArtist[] = [
@@ -10,56 +11,67 @@ export const dormantArtists: DormantArtist[] = [
     artist: 'Selena Gomez',
     campaign: 'Documentary',
     'minimum-requirement': 350000,
+    raised: 245000,
   },
   {
     artist: 'Pink Floyd',
     campaign: 'Global Tour',
     'minimum-requirement': 1650000,
+    raised: 1155000,
   },
   {
     artist: 'XXXTENTACION',
     campaign: 'Custom song',
     'minimum-requirement': 65000,
+    raised: 58500,
   },
   {
     artist: 'Santana',
     campaign: 'Golden hits selection remaster',
     'minimum-requirement': 100000,
+    raised: 67000,
   },
   {
     artist: 'Rhianna',
     campaign: 'One off concert',
     'minimum-requirement': 250000,
+    raised: 187500,
   },
   {
     artist: 'Lil Peep',
     campaign: 'Video production for new single',
     'minimum-requirement': 15000,
+    raised: 13500,
   },
   {
     artist: 'Vashti Bunyan',
     campaign: 'Produce LP to soundtrack movie',
     'minimum-requirement': 50000,
+    raised: 42000,
   },
   {
     artist: 'Bridgette Medeler',
     campaign: 'Album Production',
     'minimum-requirement': 50000,
+    raised: 38500,
   },
   {
     artist: 'Adelle',
     campaign: '5 stage UK tour',
     'minimum-requirement': 100000,
+    raised: 72000,
   },
   {
     artist: 'Daft Punk',
     campaign: '$100k to produce 4 track techno EP',
     'minimum-requirement': 100000,
+    raised: 89000,
   },
   {
     artist: 'Grothye',
     campaign: '10 track LP',
     'minimum-requirement': 20000,
+    raised: 16500,
   },
 ];
 
@@ -88,6 +100,12 @@ export interface Campaign {
   daysLeft: number;
   description: string;
   category: 'active' | 'completed';
+}
+
+// Dormant artist campaigns with funding
+export interface ArtistCampaign extends DormantArtist {
+  raised?: number;
+  progress?: number;
 }
 
 export const campaigns: Campaign[] = [

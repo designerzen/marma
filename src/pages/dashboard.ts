@@ -1,4 +1,5 @@
-import { createHeader, createFooter } from '../components.ts';
+import { createHeader, createFooter, createProgressBar } from '../components.ts';
+import { campaigns } from '../data.ts';
 
 export function createDashboardPage(router: any): HTMLElement {
   const page = document.createElement('div');
@@ -145,6 +146,55 @@ export function createDashboardPage(router: any): HTMLElement {
   historySection.appendChild(historyTitle);
   historySection.appendChild(timeline);
 
+  // Active Campaigns Section
+  const campaignsSection = document.createElement('div');
+  campaignsSection.style.marginBottom = 'var(--spacing-xl)';
+
+  const campaignsTitle = document.createElement('h2');
+  campaignsTitle.textContent = 'Active Campaigns You Support';
+  campaignsTitle.style.marginBottom = 'var(--spacing-lg)';
+  campaignsSection.appendChild(campaignsTitle);
+
+  const campaignsGrid = document.createElement('div');
+  campaignsGrid.style.display = 'grid';
+  campaignsGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+  campaignsGrid.style.gap = 'var(--spacing-lg)';
+
+  // Display active campaigns with progress bars
+  const activeCampaigns = campaigns.filter((c) => c.category === 'active');
+  activeCampaigns.forEach((campaign) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const titleEl = document.createElement('h3');
+    titleEl.textContent = campaign.title;
+    titleEl.style.marginBottom = 'var(--spacing-sm)';
+
+    const artistEl = document.createElement('p');
+    artistEl.style.fontSize = '0.875rem';
+    artistEl.style.color = 'var(--color-text-secondary)';
+    artistEl.style.marginBottom = 'var(--spacing-md)';
+    artistEl.textContent = `by ${campaign.artist}`;
+
+    const progressBar = createProgressBar(campaign.raised, campaign.goal);
+    progressBar.style.marginBottom = 'var(--spacing-md)';
+
+    const statsEl = document.createElement('div');
+    statsEl.style.fontSize = '0.875rem';
+    statsEl.style.color = 'var(--color-text-secondary)';
+    statsEl.style.marginBottom = 'var(--spacing-md)';
+    statsEl.innerHTML = `<strong>${campaign.backers}</strong> backers • <strong>${campaign.daysLeft}</strong> days left`;
+
+    card.appendChild(titleEl);
+    card.appendChild(artistEl);
+    card.appendChild(progressBar);
+    card.appendChild(statsEl);
+    campaignsGrid.appendChild(card);
+  });
+
+  campaignsSection.appendChild(campaignsGrid);
+  container.appendChild(campaignsSection);
+
   // Right: Token Allocation
   const allocationSection = document.createElement('div');
 
@@ -244,6 +294,7 @@ export function createDashboardPage(router: any): HTMLElement {
     perkEl.style.borderLeft = '4px solid var(--color-accent)';
     perkEl.style.marginBottom = 'var(--spacing-sm)';
     perkEl.style.backgroundColor = 'white';
+    perkEl.style.color = '#000';
     perkEl.textContent = '✓ ' + perk;
     perksList.appendChild(perkEl);
   });
